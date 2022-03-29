@@ -70,7 +70,7 @@
 <body>
     <form>
         <select id="restaurant" title="음식점"></select>
-        <select id="type" title="음식의 종류" class="no_display"></select>
+        <select id="type" title="음식들의 종류" class="no_display"></select>
     </form>
     <ul title="음식들" tabindex="0"></ul>
     <script>
@@ -419,16 +419,8 @@
         {
             const item=document.createElement('li');
             list.appendChild(item);
-
-            const division_for_name=document.createElement('div');
-            item.appendChild(division_for_name);
-            division_for_name.title='음식의 이름';
-            division_for_name.innerText=dish.name;
-
-            const division_for_price=document.createElement('div');
-            item.appendChild(division_for_price);
-            division_for_price.title='음식의 가격';
-            division_for_price.innerText=dish.price;
+            item.title='음식';
+            item.innerText=dish.name+'\n'+dish.price;
         }
 
         function append_items()
@@ -445,7 +437,8 @@
                 }
             }
 
-            list.focus({preventScroll:true});
+            list.focus();
+            window.scrollTo(0,0);
         }
 
         selection_for_restaurant.addEventListener('change',function()
