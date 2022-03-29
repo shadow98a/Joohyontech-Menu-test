@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="autor" content="SIAT 2022 소프트웨어 개발자 B반 김주현">
-    <meta name="description" content="SIAT의 모든 분들께서 읽으실 수 있는 메뉴판입니다.">
+    <meta name="description" content="SIAT의 모두가 읽을 수 있는 차림표입니다.">
     <title>주현테크 차림표</title>
     <style>
         *
@@ -23,6 +23,9 @@
 
         form
         {
+            position:fixed;
+            top:0;
+            width:100%;
             border-bottom:0.125em solid #FFFFFF;
             background-color:#000000;
         }
@@ -40,6 +43,11 @@
             background-color:#000000;
         }
 
+        ul
+        {
+            margin-top:4.125em;/* (1.5em+1em+1.5em)+0.125em */
+        }
+
         li
         {
             list-style-type:none;
@@ -52,6 +60,11 @@
             display:none;
         }
 
+        .margin_for_2_selections
+        {
+            margin-top:8.1875em;/* (1.5em+1em+1.5em+0.0625em)+(1.5em+1em+1.5em)+0.125em */
+        }
+
     </style>
 </head>
 <body>
@@ -59,7 +72,7 @@
         <select id="restaurant" title="음식점"></select>
         <select id="type" title="음식의 종류" class="no_display"></select>
     </form>
-    <ul title="음식" tabindex="0"></ul>
+    <ul title="음식들" tabindex="0"></ul>
     <script>
         const restaurants=
         [
@@ -347,7 +360,6 @@
         // [
 
         // ];
-
         const selection_for_restaurant=document.querySelector('select#restaurant');
         const selection_for_type=document.querySelector('select#type');
         const list=document.querySelector('ul');
@@ -388,10 +400,12 @@
             if(!selected_restaurant||selected_restaurant.types.length==1)
             {
                 selection_for_type.classList.add('no_display');
+                list.classList.remove('margin_for_2_selections');
                 return;
             }
 
             selection_for_type.classList.remove('no_display');
+            list.classList.add('margin_for_2_selections');
             const types=selected_restaurant.types;
             append_option(selection_for_type,null,'모든 종류');
             for(let index=0;index<types.length;index++)
