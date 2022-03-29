@@ -43,14 +43,16 @@
             background-color:#000000;
         }
 
-        ul
+        /* ul */
+        .ul
         {
             margin-top:4.125em;/* (1.5em+1em+1.5em)+0.125em */
         }
 
-        li
+        /* li */
+        .li
         {
-            list-style-type:none;
+            /* list-style-type:none; */
             padding:1.5em;
             border-top:0.0625em solid #FFFFFF;
         }
@@ -72,7 +74,8 @@
         <select id="restaurant" title="음식점"></select>
         <select id="type" title="음식들의 종류" class="no_display"></select>
     </form>
-    <ul title="음식들" tabindex="0"></ul>
+    <!-- <ul title="음식들" tabindex="0"></ul> -->
+    <div class="ul" title="음식들" tabindex="0"></div>
     <script>
         const restaurants=
         [
@@ -362,7 +365,8 @@
         // ];
         const selection_for_restaurant=document.querySelector('select#restaurant');
         const selection_for_type=document.querySelector('select#type');
-        const list=document.querySelector('ul');
+        // const list=document.querySelector('ul');
+        const list=document.querySelector('.ul');
 
         let selected_restaurant=null;
         let selected_type=null;
@@ -417,10 +421,28 @@
 
         function append_item(dish)
         {
-            const item=document.createElement('li');
+            // const item=document.createElement('li');
+            const item=document.createElement('p');
+            item.className='li';
             list.appendChild(item);
             item.title='음식';
-            item.innerText=dish.name+'\n'+dish.price;
+
+            // const division_for_name=document.createElement('div');
+            // item.appendChild(division_for_name);
+            // division_for_name.title='음식의 이름';
+            // division_for_name.innerText=dish.name;
+
+            // const division_for_price=document.createElement('div');
+            // item.appendChild(division_for_price);
+            // division_for_price.title='음식의 가격';
+            // division_for_price.innerText=dish.price;
+            item.innerText=dish.name;
+
+            const line_break=document.createElement('br');
+            item.appendChild(line_break);
+
+            const text_node=document.createTextNode(dish.price);
+            item.appendChild(text_node);
         }
 
         function append_items()
