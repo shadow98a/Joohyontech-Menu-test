@@ -12,7 +12,7 @@
         {
             margin:0;
             padding:0;
-            font-size:4vw;
+            font-size:4vw/*100/(li.padding.width+'왕 새우튀김 정식 (왕 새우튀김 3pcs + 돈까스)'.width+li.padding.width)vw*/;
             color:#FFFFFF;
         }
 
@@ -26,15 +26,15 @@
             position:fixed;
             top:0;
             width:100%;
-            border-bottom:0.125em solid #FFFFFF;
+            border-bottom:0.125em/*1/(2^3)em*/ solid #FFFFFF;
             background-color:#000000;
         }
 
         select
         {
             width:100%;
-            padding:1.5em;
-            border-bottom:0.0625em solid #FFFFFF;
+            padding:1.5em/*3/(2^1)em*/;
+            border-bottom:0.0625em/*1/(2^4)em*/ solid #FFFFFF;
             background-color:transparent;
         }
 
@@ -51,8 +51,8 @@
         li
         {
             list-style-type:none;
-            padding:1.5em;
-            border-top:0.0625em solid #FFFFFF;
+            padding:1.5em/*3/(2^1)em*/;
+            border-top:0.0625em/*1/(2^4)em*/ solid #FFFFFF;
         }
 
         .no_display
@@ -64,7 +64,6 @@
         {
             margin-top:8.1875em;/* (1.5em+1em+1.5em+0.0625em)+(1.5em+1em+1.5em)+0.125em */
         }
-
     </style>
 </head>
 <body>
@@ -76,65 +75,71 @@
     <script>
         const restaurants=
         [
-            {name:'King왕수제돈까스',types:undefined}, //0
-            {name:'메이찬',types:undefined},           //1
-            {name:'모니김밥',types:undefined},         //2
-            {name:'분당두부',types:undefined},         //3
-            {name:'아람이네식당',types:undefined},     //4
-            {name:'어부마당',types:undefined},         //5
-            // {name:'유부남',types:undefined},           //6
-            {name:'유부남',types:undefined}           //6
-            // {name:'전주콩나물국밥',types:undefined},   //7
+            {name:'King왕수제돈까스'},  //0
+            {name:'메이찬'},            //1
+            {name:'모니김밥'},          //2
+            {name:'분당두부'},          //3
+            {name:'아람이네식당'},      //4
+            {name:'어부마당'},          //5
+            {name:'유부남'},            //6
+            {name:'전주콩나루콩나물국밥'}//7
         ];
 
         restaurants[0].types=
         [
-            {name:null,dishes:undefined}                //0
+            {name:null}                 //0
         ];
 
         restaurants[1].types=
         [
-            {name:'면류',dishes:undefined},             //0
-            {name:'밥류',dishes:undefined},             //1
-            {name:'요리류',dishes:undefined},           //2
-            {name:'주류',dishes:undefined},             //3
-            {name:'탕수육세트',dishes:undefined}        //4
+            {name:'면류'},              //0
+            {name:'밥류'},              //1
+            {name:'요리류'},            //2
+            {name:'주류'},              //3
+            {name:'탕수육세트'}         //4
         ];
 
         restaurants[2].types=
         [
-            {name:null,dishes:undefined}                //0
+            {name:null}                 //0
         ];
 
         restaurants[3].types=
         [
-            {name:'점심, 저녁 식사',dishes:undefined},  //0
-            {name:'식전방장',dishes:undefined},         //1
-            {name:'진수성찬',dishes:undefined}          //2
+            {name:'점심, 저녁 식사'},   //0
+            {name:'막걸리'},            //1
+            {name:'맑은 술'},           //2
+            {name:'내린 술'},           //3
+            {name:'산해진미'},          //4
+            {name:'식전방장'}           //5
         ];
 
         restaurants[4].types=
         [
-            {name:null,dishes:undefined}                //0
+            {name:null}                 //0
         ];
 
         restaurants[5].types=
         [
-            {name:'식사류',dishes:undefined},           //0
-            {name:'안주류',dishes:undefined}            //1
+            {name:'식사류'},            //0
+            {name:'안주류'},            //1
+            {name:'주류'}               //2
         ];
 
         restaurants[6].types=
         [
-            {name:'유부초밥',dishes:undefined},         //0
-            {name:'우동',dishes:undefined},             //1
-            {name:'세트메뉴',dishes:undefined}          //2
+            {name:'세트메뉴'},          //0
+            {name:'유뷰초밥'},          //1
+            {name:'면류'},              //2
+            {name:'덮밥류'},            //3
+            {name:'사이드'},            //4
+            {name:'음료'}               //5
         ];
 
-        // restaurants[7].types=
-        // [
-        //     {name:null,dishes:undefined}                //0
-        // ];
+        restaurants[7].types=
+        [
+            {name:null}                 //0
+        ];
 
         restaurants[0].types[0].dishes=
         [
@@ -145,11 +150,9 @@
             {name:'킹정식 (돈까스+생선까스+함박스테이크)',price:9000},
             {name:'순두부찌개',price:7000},
             {name:'해물볶음우동',price:7000},
-
             {name:'소주',price:4000},
             {name:'맥주',price:4000},
             {name:'음료',price:2000},
-
             {name:'왕 새우튀김 정식 (왕 새우튀김 3pcs + 돈까스)',price:9000}
         ];
 
@@ -222,7 +225,8 @@
 
         restaurants[2].types[0].dishes=
         [
-            {name:'모니유부김밥',price:3500},
+            {name:'모니유부김밥 (기본야채김밥)',price:3500},
+			{name:'꼬마어린이김밥',price:3000},
             {name:'돈까스김밥',price:4000},
             {name:'참치김밥',price:4000},
             {name:'치즈김밥',price:4000},
@@ -262,30 +266,98 @@
 
         restaurants[3].types[0].dishes=
         [
-            {name:'콩비지',price:8000},
-            {name:'해물순두부',price:8500},
-            {name:'제육볶음',price:8000},
-            {name:'콩국수(여름)',price:9000},
-            {name:'콩국수(여름) 특',price:11000},
-            {name:'들깨순두부',price:8000},
-            {name:'해물된장찌개',price:8000},
+            {name:'콩비지',price:8500},
+            {name:'해물순두부',price:9000},
+            {name:'제육볶음 (쌈추가 1,500원)',price:8500},
+            {name:'콩국수',price:10000},
+            {name:'콩물 한 잔',price:2000},
             {name:'하얀순두부',price:9000},
-            {name:'청국장',price:7500},
-            {name:'굴국밥',price:9000}
+            {name:'콩물포장',price:10000},
+            {name:'굴국밥',price:9500},
+            {name:'청국장',price:8500}
         ];
 
         restaurants[3].types[1].dishes=
         [
-            {name:'해물순두부전골',price:18000},
-            {name:'김치순두부전골',price:15000},
-            {name:'홍어사시미 (묵은지 추가 : 3000원)',price:22000}
+            {name:'고타다이브',price:7500},
+            {name:'알밤',price:4000},
+            {name:'가평잣',price:5000},
+            {name:'성남분당',price:5000},
+            {name:'백련',price:5500},
+            {name:'호랑이',price:6000},
+            {name:'그래,그 날',price:6000},
+            {name:'느린마을',price:6000},
+            {name:'동래아들',price:6500},
+            {name:'대대포 레드',price:11000},
+            {name:'술헤는 밤',price:9000},
+            {name:'골디락스',price:12000},
+            {name:'이화백주',price:16000},
+            {name:'풍정사계 秋',price:18000}
         ];
 
         restaurants[3].types[2].dishes=
         [
-            {name:'두부두루치기',price:18000},
-            {name:'두부지짐',price:14000},
-            {name:'두부김치',price:17000}
+            {name:'매실원주',price:11000},
+            {name:'백련맑은술',price:13000},
+            {name:'고흥유자주',price:18000},
+            {name:'풍정사계 春',price:34000},
+            {name:'풍정사계 夏',price:39000},
+            {name:'일지춘',price:39000}
+        ];
+
+        restaurants[3].types[3].dishes=
+        [
+            {name:'문배술 40% / 200ml',price:19000},
+            {name:'문배술 25% / 500ml',price:23000},
+            {name:'문배술 23% / 375ml',price:12000},
+            {name:'이강주 25%',price:18000},
+            {name:'이강주 19%',price:10000},
+            {name:'려 40%',price:45000},
+            {name:'려 25%/쌀+고구마',price:26000},
+            {name:'려 25%/고구마100',price:45000},
+            {name:'주향 500ml',price:55000},
+            {name:'주향 41% 375ml',price:40000},
+            {name:'주향 25% / 375ml',price:19000},
+            {name:'서울의밤',price:12500},
+            {name:'술샘 16%',price:14000},
+            {name:'술샘 19%',price:16000},
+            {name:'풍정사계冬 42%',price:45000},
+            {name:'풍정사계冬 25%',price:23000},
+            {name:'미르',price:35000},
+            {name:'귀감',price:38000},
+            {name:'진맥소주 22% / 375ml',price:26000},
+            {name:'진맥소주 40% / 500ml',price:55000},
+            {name:'진맥소주 53% / 200ml',price:41000},
+            {name:'소호 56%/200ml',price:250000},
+            {name:'소호 36.5% / 200ml',price:32000},
+            {name:'귀감',price:38000},
+            {name:'삼해소주',price:42000},
+            {name:'추사40',price:35000},
+            {name:'담솔',price:39000},
+            {name:'화요XP',price:130000},
+            {name:'무작 500ml',price:320000},
+            {name:'무작 350ml',price:140000},
+            {name:'신례명주',price:150000},
+            {name:'두레앙',price:70000}
+        ];
+
+        restaurants[3].types[4].dishes=
+        [
+            {name:'굴보쌈 큰(3-4인)',price:56000},
+            {name:'굴보쌈 작은(2-3인)',price:44000},
+            {name:'두부보쌈 큰(3인)',price:39000},
+            {name:'두부보쌈 작은(2인)',price:32000},
+            {name:'홍어사합 큰(3-4인)',price:53000},
+            {name:'홍어사합 작은(2-3인)',price:40000}
+        ];
+
+        restaurants[3].types[5].dishes=
+        [
+            {name:'두부김치',price:19000},
+            {name:'해물파전',price:19000},
+            {name:'통영산생굴',price:18000},
+            {name:'굴전',price:19000},
+            {name:'두부&묵은지 (묵은지 추가 : 3000원)',price:13000}
         ];
 
         restaurants[4].types[0].dishes=
@@ -308,58 +380,95 @@
             {name:'해물 된장찌개',price:7500},
             {name:'모듬초밥(15개)',price:15000},
             {name:'회덮밥',price:9000},
-            {name:'알밥',price:6500},
-            {name:'묵은지 김치찌개(2인) (오후 3시까지 가능)',price:15000}
+            {name:'알밥',price:6500}
         ];
 
         restaurants[5].types[1].dishes=
         [
             {name:'참치스페셜코스(1인)',price:60000},
-            {name:'참치회(A)(24점)',price:59000},
-            {name:'참치회(B)(24점)',price:39000},
-            {name:'모듬회(24점)',price:39000},
-            {name:'모듬회 추가(10점)',price:12000},
-            {name:'혼마구로오토로(1점)',price:4000},
-            {name:'혼마구로주토로(1점)',price:2000},
+            {name:'참치회(A) (24점)',price:59000},
+            {name:'모듬회 (24점)',price:39000},
+            {name:'모듬회 추가 (10점)',price:12000},
+            {name:'혼마구로오토로 (1점)',price:4000},
+            {name:'혼마구로주토로 (1점)',price:2000},
             {name:'회와 초밥',price:25000},
             {name:'새우야채튀김(오후 5시 이후 가능)',price:20000}
         ];
 
+        restaurants[5].types[2].dishes=
+        [
+            {name:'소주',price:4000},
+            {name:'맥주',price:4000},
+            {name:'클라우드',price:4500},
+            {name:'막걸리',price:4000},
+            {name:'청하',price:5000},
+            {name:'음료',price:2000}
+        ];
+
         restaurants[6].types[0].dishes=
         [
-            {name:'유부남초밥',price:2000},
-            {name:'참치마요네즈',price:2400},
-            {name:'달달크래미',price:2400},
-            {name:'치즈날치알',price:2600},
-            {name:'김치베이컨',price:2600},
-            {name:'참깨명란',price:2600},
-            {name:'불고기',price:2700},
-            {name:'땡초불닭',price:2700}
+            {name:'유부남 Set (유부남우동 + 유부초밥 택1)',price:7000},
+            {name:'싱글 Set (면류 택1 + 유부초밥 택1)',price:9000},
+            {name:'커플 Set (면류 택3 + 유부초밥 택2 + 사이드 택1)',price:20000}
         ];
 
         restaurants[6].types[1].dishes=
         [
-            {name:'유부남우동',price:5000},
-            {name:'차슈우동',price:7000},
-            {name:'나가사끼우동',price:7000},
-            {name:'홍나가사끼우동',price:7000},
-            {name:'샐러드우동',price:7000},
-            {name:'감바스우동',price:7000},
-            {name:'까르보우동',price:7000},
-            {name:'불닭볶음우동',price:7000}
+            {name:'유부남 초밥',price:2000},
+            {name:'참치 마요네즈',price:2400},
+            {name:'달달 크래미',price:2400},
+            {name:'치즈 날치알',price:2600},
+            {name:'김치 베이컨',price:2600},
+            {name:'참깨 명란',price:2600},
+            {name:'불고기',price:2700},
+            {name:'땡초 불닭',price:2700}
         ];
 
         restaurants[6].types[2].dishes=
         [
-            {name:'유부남 Set (유부남우동+유부초밥 택1)',price:7000},
-            {name:'싱글Set (면류 택1+유부초밥 택1)',price:9000},
-            {name:'커플Set (면류 택3+유부초밥 택2+사이드 택1)',price:20000}
+            {name:'유부남 우동',price:5000},
+            {name:'차슈 우동',price:7000},
+            {name:'나가사끼 우동',price:7000},
+            {name:'홍나가사끼 우동',price:7000},
+            {name:'샐러드 우동',price:7000},
+            {name:'감바스 우동',price:7000},
+            {name:'까르보 우동',price:7000},
+            {name:'불닭볶음 우동',price:7000}
         ];
 
-        // restaurants[7].types[0].dishes=
-        // [
+        restaurants[6].types[3].dishes=
+        [
+            {name:'새우장 덮밥',price:10000},
+            {name:'연어장 덮밥',price:10000},
+            {name:'매콤차슈덮밥',price:8000},
+            {name:'간장차슈덮밥',price:8000}
+        ];
 
-        // ];
+        restaurants[6].types[4].dishes=
+        [
+            {name:'타코야끼 6p',price:3000},
+            {name:'모듬 고로케 3p',price:3000},
+            {name:'새우튀김 3p',price:3000},
+            {name:'미니 오꼬노미 3p',price:3000},
+            {name:'버팔로 치킨 3p',price:3000},
+            {name:'멘보사 4p',price:3000},
+            {name:'유부남 샐러드',price:3000}
+        ];
+
+        restaurants[6].types[5].dishes=
+        [
+            {name:'콜라',price:1500},
+            {name:'사이다',price:1500},
+            {name:'웰치스포도',price:1500}
+        ];
+
+        restaurants[7].types[0].dishes=
+        [
+            {name:'全州 콩나물 국밥',price:7000},
+            {name:'全州 전주비빔밥',price:8000},
+            {name:'김치찌개',price:7000}
+        ];
+
         const selection_for_restaurant=document.querySelector('select#restaurant');
         const selection_for_type=document.querySelector('select#type');
         const list=document.querySelector('ul');
@@ -386,7 +495,7 @@
         function append_options_for_restaurants()
         {
             remove_children(selection_for_restaurant);
-            append_option(selection_for_restaurant,null,'모든 음식점');
+            append_option(selection_for_restaurant,null,'모든 음식점들');
             for(let index=0;index<restaurants.length;index++)
             {
                 append_option(selection_for_restaurant,index,restaurants[index].name);
@@ -407,30 +516,19 @@
             selection_for_type.classList.remove('no_display');
             list.classList.add('margin_for_2_selections');
             const types=selected_restaurant.types;
-            append_option(selection_for_type,null,'모든 종류');
+            append_option(selection_for_type,null,'모든 종류들');
             for(let index=0;index<types.length;index++)
             {
                 append_option(selection_for_type,index,types[index].name);
             }
         }
-            
 
         function append_item(dish)
         {
             const item=document.createElement('li');
             list.appendChild(item);
-            list.title='음식';
+            item.title='음식';
             item.tabIndex='0';
-
-            // const division_for_name=document.createElement('p');
-            // item.appendChild(division_for_name);
-            // division_for_name.title='음식의 이름';
-            // division_for_name.innerText=dish.name;
-
-            // const division_for_price=document.createElement('p');
-            // item.appendChild(division_for_price);
-            // division_for_price.title='음식의 가격';
-            // division_for_price.innerText=dish.price;
             item.innerText=dish.name;
             item.appendChild(document.createElement('br'));
             item.appendChild(document.createTextNode(dish.price));
@@ -469,6 +567,7 @@
             selected_type=!value?null:selected_restaurant.types[value];
             append_items();
         });
+
         append_options_for_restaurants();
         append_items();
     </script>
